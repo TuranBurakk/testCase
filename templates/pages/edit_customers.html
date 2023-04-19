@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="contact_form">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Müşteri Düzenle</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row row-fluid mb-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label class="form-label">{{form.tc_no.label}}</label>
+                            {{form.tc_no}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label class="form-label">{{form.name.label}}</label>
+                            {{form.name}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label class="form-label">{{form.surname.label}}</label>
+                            {{form.surname}}
+                        </div>
+                    </div>
+                    <div class="row row-fluid mb-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label class="form-label">{{form.phone.label}}</label>
+                            {{form.phone}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label class="form-label">{{form.city.label}}</label>
+                            {{form.city}}
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label class="form-label">{{form.district.label}}</label>
+                            {{form.district}}
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit">Kaydet</button>
+                        <a href="{% url 'delete_customer' customer.pk %}" class="btn btn-danger">Müşteriyi Sil</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

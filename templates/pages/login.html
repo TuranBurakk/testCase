@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<div class="card mx-auto my-5" style="max-width: 500px;">
+    <div class="card-body">
+        <h3 class="card-title text-center">Giriş yap</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+
+                {{message}}
+            </div>
+            {% endfor %}
+
+            {% endif %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Kullanıcı Adı</label>
+                {{form.username}}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Şifre</label>
+                {{form.password}}
+            </div>
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <div class="text-center">
+                <input type="submit" value="Giriş yap" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

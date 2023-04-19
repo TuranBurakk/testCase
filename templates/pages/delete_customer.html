@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="contact_form">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Müşteri Sil</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <p>Müşteri "{{ customer.name }} {{ customer.surname }}"'i silmek istediğinizden emin misiniz?</p>
+                    <div class="text-center">
+                        <button class="btn btn-danger" type="submit">Evet, Sil</button>
+                        <a href="{% url 'index' %}" class="btn btn-primary">Hayır, Geri Dön</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

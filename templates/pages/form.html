@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <strong>Hata!</strong> Lütfen formu kontrol edin:
+</div>
+{% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_tc_no">TC Kimlik</label>
+            <input type="number" id="id_tc_no" name="tc_no" class="form-control"
+            placeholder="TC kimlik no giriniz" 
+            oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+            maxlength="11" required>
+            <small class="form-text text-danger" style="display: none;">
+                Geçersiz TC kimlik no
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="id_name">İsim</label>
+            <input type="text" id="id_name" name="name" class="form-control"
+            placeholder="İsminizi giriniz" pattern="[A-Za-zÇçĞğİıÖöŞşÜü]+"  required>
+        </div>
+        <div class="form-group">
+            <label for="id_surname">Soy isim</label>
+            <input type="text" id="id_surname" name="surname" class="form-control"
+            placeholder="Soy isim giriniz" pattern="[A-Za-zÇçĞğİıÖöŞşÜü]+"  required>
+        </div>
+        <div class="form-group">
+            <label for="id_phone">Telefon no</label>
+            <input type="number" id="id_phone" name="phone" class="form-control"
+            placeholder="Başında 0 ile telefon numaranızı giriniz" oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+            maxlength="11" required>
+        </div>
+        <div class="form-group">
+            <label for="id_city">Şehir</label>
+            <input name="city" placeholder="Şehir" id="id_city" class="form-control" pattern="[A-Za-zÇçĞğİıÖöŞşÜü]+"  required>
+        </div>
+        <div class="form-group">
+            <label for="id_district">İlçe</label>
+            <input name="district" id="id_district" placeholder="İlçe" class="form-control" pattern="[A-Za-zÇçĞğİıÖöŞşÜü]+" required>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+            <button class="btn btn-primary"  type="submit">Kaydet</button>
+        </div>
+    </form>
+
+{% endblock %}

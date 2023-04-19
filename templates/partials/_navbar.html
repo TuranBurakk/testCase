@@ -1,0 +1,27 @@
+{% load static %}
+
+<header>
+    <div class="navbar navbar-expand-sm bg-primary navbar-dark">
+        <div class="container-fluid">
+                <img src="https://loggma.com.tr/img/nav/nav-logo.svg"/>
+            <ul class="navbar-nav ml-auto">
+                <div class="collapse navbar-collapse">
+                    <li class="nav-item "><a href="/" class="nav-link">Müşterileri görüntüle</a></li>
+                    <li class="nav-item "><a href="{% url 'add' %}" class="nav-link">Müşteri ekle</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li style="margin: 10px;"><a class="hover-btn-new log orange mr-5" href="javascript:{document.getElementById('logout').submit()}"><span><i class="fa fa-sign-out"></i></span></a></li>
+                        <form action="{% url 'logout' %}" method="POST" id="logout">
+                            {% csrf_token %}
+                            <input type="hidden">
+                        </form>
+                    </li>
+                    {% else %}
+                    <li style="margin: 10px;"><a class="hover-btn-new log orange mr-5" href="{% url 'login' %}"><span><i class="fa fa-sign-in"></i></span></a></li>
+                    <li style="margin: 10px;"><a class="hover-btn-new log orange" href="{% url 'register' %}"><span><i class="fa fa-user-plus"></i></span></a></li>
+                    {% endif %}
+                </div>
+            </ul>
+        </div>
+    </div>
+</header>
